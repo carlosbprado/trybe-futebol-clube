@@ -31,7 +31,7 @@ describe('Testes para o endpoint /teams', () => {
 
   let chaiHttpResponse: Response;
 
-  before(async () => {
+  beforeEach(async () => {
     sinon
       .stub(TeamsModel, "findAll")
       .resolves(
@@ -39,7 +39,7 @@ describe('Testes para o endpoint /teams', () => {
       );
   });
 
-  after(()=>{
+  afterEach(()=>{
     (TeamsModel.findAll as sinon.SinonStub).restore();
   })
 
