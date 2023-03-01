@@ -1,5 +1,6 @@
 import Team from '../database/models/TeamsModel';
 
 export interface IServiceTeam {
-  getAll(): Promise<Team[]>
+  findAll(): Promise<Team[]>
+  findOne(id: number): Promise<Team | null>
 }

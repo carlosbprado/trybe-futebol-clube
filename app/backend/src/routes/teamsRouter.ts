@@ -8,6 +8,7 @@ const teamsController = new TeamsController(service);
 
 const teamsRoutes = Router();
 
-teamsRoutes.get('/teams', (req: Request, res: Response) => teamsController.getAll(req, res));
+teamsRoutes.get('/teams', (req: Request, res: Response) => teamsController.findAll(req, res));
+teamsRoutes.get('/teams/:id', (req: Request, res: Response) => teamsController.findOne(req, res));
 
 export default teamsRoutes;
