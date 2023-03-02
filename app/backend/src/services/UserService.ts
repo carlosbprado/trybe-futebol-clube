@@ -1,6 +1,6 @@
 import { ModelStatic } from 'sequelize';
 import * as bcrypt from 'bcryptjs';
-import generateToken from '../jwt/token';
+import { generateToken } from '../jwt/token';
 import User from '../database/models/UserModel';
 import IServiceUser, { TLogin, Tmessage } from '../interfaces/IServiceUser';
 
@@ -18,7 +18,7 @@ export default class UserService implements IServiceUser {
       if (!isMatch) {
         return null;
       }
-      const token = generateToken(email);
+      const token = generateToken(email, user.role);
       return { token };
     }
     return null;
