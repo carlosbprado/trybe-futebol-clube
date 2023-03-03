@@ -30,8 +30,6 @@ describe('Testando a rota /teams', () => {
 
   it('Testa o retorno dos times', async() => {
     const response = await chai.request(app.app).get('/teams');
-    console.log(response.body);
-    
     expect(response.body).to.be.deep.equal(teamsMock)
   })
 
