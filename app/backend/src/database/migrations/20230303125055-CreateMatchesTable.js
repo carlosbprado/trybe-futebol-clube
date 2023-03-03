@@ -41,7 +41,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       }
-    });
+    }, {underscored: true});
   },
 
   down: async (queryInterface, Sequelize) => {

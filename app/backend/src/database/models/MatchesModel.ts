@@ -4,7 +4,8 @@ import Team from './TeamsModel';
 
 class Match extends Model {
   declare id: number;
-  declare teamName: string;
+  declare homeTeamId: string;
+  declare awayTeamId: string;
 }
 
 Match.init({
@@ -19,6 +20,7 @@ Match.init({
     type: DataTypes.INTEGER,
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
+    // field: 'home_team_id',
     references: {
       model: 'teams',
       key: 'id',
@@ -33,6 +35,7 @@ Match.init({
     allowNull: false,
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
+    // field: 'away_team_id',
     references: {
       model: 'teams',
       key: 'id',
@@ -53,9 +56,9 @@ Match.init({
   modelName: 'matches',
 });
 
-Match.belongsTo(Team, { foreignKey: 'home_team_id', as: 'homeTeamId' });
-Team.hasMany(Match, { foreignKey: 'home_team_id', as: 'matchTeamId' });
+Match.belongsTo(Team, { foreignKey: 'homeTeamId', as: 'homeTeam' });
+Team.hasMany(Match, { foreignKey: 'homeTeamId', as: 'matchTeam' });
 
-Match.belongsTo(Team, { foreignKey: 'away_team_id', as: 'awayTeamId' });
-Team.hasMany(Match, { foreignKey: 'away_team_id', as: 'matchAwayId' });
+Match.belongsTo(Team, { foreignKey: 'awayTeamId', as: 'awayTeam' });
+Team.hasMany(Match, { foreignKey: 'awayTeamId', as: 'matchAway' });
 export default Match;
