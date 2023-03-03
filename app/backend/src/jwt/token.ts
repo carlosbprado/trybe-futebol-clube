@@ -1,20 +1,16 @@
 import * as jwt from 'jsonwebtoken';
-import { Tmessage } from '../interfaces/IServiceUser';
 
-const tokenSecret = process.env.JWT_SECRET || 'outrasenha';
+const tokenSecret = process.env.JWT_SECRET || '';
 
 const generateToken = (email: string, role:string) =>
   jwt.sign({ email, role }, tokenSecret, { expiresIn: '15d' });
 
-async function authToken(token: string | undefined): Promise<string | jwt.JwtPayload | Tmessage> {
-  if (!token) {
-    return { message: 'Token not found' };
-  }
+async function authToken(token: string): Promise<string | jwt.JwtPayload | null> {
   try {
-    const decrypted = await jwt.verify(token, tokenSecret);
+    const decrypted = jwt.verify(token, tokenSecret);
     return decrypted;
   } catch (error) {
-    return { message: 'Token must be a valid token' };
+    return null;
   }
 }
 
