@@ -24,4 +24,7 @@ matchRoutes.patch('/matches/:id/finish', validateToken, (req: Request, res: Resp
 matchRoutes.patch('/matches/:id', validateToken, (req: Request, res: Response) =>
   matchController.update(req, res));
 
+matchRoutes.post('/matches', validateToken, (req: Request, res: Response) =>
+  matchController.create(req, res));
+
 export default matchRoutes;

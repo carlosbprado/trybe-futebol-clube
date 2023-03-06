@@ -1,6 +1,6 @@
 import { ModelStatic } from 'sequelize';
 import Team from '../database/models/TeamsModel';
-import IServiceMatch, { TBody, Tmessage } from '../interfaces/IServiceMatch';
+import IServiceMatch, { TBody, TCreateBody, Tmessage } from '../interfaces/IServiceMatch';
 import Match from '../database/models/MatchesModel';
 
 export default class MatchService implements IServiceMatch {
@@ -54,5 +54,10 @@ export default class MatchService implements IServiceMatch {
   async update(id: number, body: TBody): Promise<[number]> {
     const updateMatch = await this.model.update({ ...body }, { where: { id } });
     return updateMatch;
+  }
+
+  async create(body: TCreateBody): Promise<Match> {
+    const newMatch = await this.model.create({ ...body });
+    return newMatch;
   }
 }

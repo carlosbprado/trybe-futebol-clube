@@ -35,4 +35,10 @@ export default class MatchController {
     const updateMatches = await this._service.update(Number(id), body);
     return res.status(200).json(updateMatches);
   }
+
+  async create(req: Request, res: Response) {
+    const { body } = req;
+    const createMatch = await this._service.create(body);
+    return res.status(201).json(createMatch);
+  }
 }
