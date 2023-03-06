@@ -25,7 +25,6 @@ export default class MatchController {
   async finished(req: Request, res: Response) {
     const { id } = req.params;
     const matchesFinish = await this._service.finished(Number(id));
-    console.log(matchesFinish);
     return res.status(200).json(matchesFinish);
   }
 

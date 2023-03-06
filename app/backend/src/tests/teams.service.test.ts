@@ -31,7 +31,7 @@ describe('Testando a rota /teams', () => {
   it('Testa o retorno dos times', async() => {
     const response = await chai.request(app.app).get('/teams');
     expect(response.body).to.be.deep.equal(teamsMock)
-  })
+  });
 
   it('testa o retorno de apenas 1 time', async () => {
     sinon.stub(TeamsModel, 'findOne').resolves(teamMock as TeamsModel)
