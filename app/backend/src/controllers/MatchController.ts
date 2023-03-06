@@ -28,4 +28,11 @@ export default class MatchController {
     console.log(matchesFinish);
     return res.status(200).json(matchesFinish);
   }
+
+  async update(req: Request, res: Response) {
+    const { id } = req.params;
+    const { body } = req;
+    const updateMatches = await this._service.update(Number(id), body);
+    return res.status(200).json(updateMatches);
+  }
 }
